@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Update Password</title>
+
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+
+<body>
+    <nav th:replace="fragments/fragment :: navbar"></nav>
+	<h2 th:if="${error} == true" class="error" th:style="${'color: red;'}">Password harus mengandung angka dan minimal memiliki 8 karakter</h2>
+    <div class="container-fluid">
+  
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        Update password
+                    </div>
+                    <div class="card-body">
+                        <form th:action="@{/user/updatePasswordOk}" method="POST">
+                            <input type="hidden" name="username" th:value="${#httpServletRequest.remoteUser}" />                           
+                            Password Lama: <br>
+                            <input type="password" name="passwordLama" class="form-control" />
+                            <br>
+                            Password Baru: <br>
+                            <input type="password" name="passwordBaru" class="form-control" />
+                            <br>
+                            Konfirmasi Password Baru: <br>
+                            <input type="password" name="passwordBaruKonfirm"  class="form-control" />
+                            <br><br>
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
